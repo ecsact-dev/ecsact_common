@@ -11,3 +11,4 @@ jobs:
       - run: go run main.go
         env:
           GH_TOKEN: ${{ secrets.SEAUBOT_ECSACT_DEV_GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SEAUBOT_ECSACT_DEV_GH_TOKEN }}
