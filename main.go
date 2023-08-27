@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime/debug"
 	"strings"
 	"time"
 
@@ -32,6 +33,7 @@ type FilesDiff struct {
 
 func checkErr(err error) {
 	if err != nil {
+		debug.PrintStack()
 		log.Fatal(err)
 	}
 }
