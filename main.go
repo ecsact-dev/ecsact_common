@@ -266,7 +266,7 @@ func main() {
 			createPr(repo_name, branch_name, repo, worktree, c.PrTitle, &object.Signature{
 				Name:  c.AuthorLogin,
 				Email: c.AuthorLogin + "@users.noreply.github.com",
-				When:  time.Time{},
+				When:  time.Now(),
 			})
 		} else {
 			fmt.Printf("Pr created already!\n")
