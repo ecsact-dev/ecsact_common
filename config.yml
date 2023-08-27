@@ -3,6 +3,6 @@ files_dir: files
 author_login: seaubot
 repos:
   - ecsact_runtime
-  # - ecsact_parse
-  # - ecsact_interpret
-  # - ecsact_si_wasm
+  - ecsact_parse
+  - ecsact_interpret
+  - ecsact_si_wasm
