@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-go@v4
       - run: go run main.go
         env:
           GH_TOKEN: ${{ secrets.SEAUBOT_ECSACT_DEV_GH_TOKEN }}
