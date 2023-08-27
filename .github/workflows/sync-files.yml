@@ -1,7 +1,8 @@
 name: Sync common files
 on:
-  push:
-      branches: [ main ]
+  push: {branches: [main]}
+  workflow_dispatch: {}
+
 jobs:
   sync_common_files:
     runs-on: ubuntu-latest
@@ -17,3 +18,4 @@ jobs:
           committer_username: seaubot
           committer_email: seaubot@users.noreply.github.com
           commit_message: "chore: sync with ecsact_common"
+          bot_branch_name: "chore/sync-with-ecsact-common"
