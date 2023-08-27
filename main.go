@@ -198,8 +198,17 @@ func main() {
 
 	for _, repo_name := range c.Repos {
 		repo_clone_dir := fmt.Sprintf("./clones/%s", repo_name)
+
+		var clone_url string
+		gh_token := os.Getenv("GH_TOKEN")
+		if gh_token != "" {
+			clone_url = fmt.Sprintf("https://github.com/ecsact-dev/%s.git", repo_name)
+		} else {
+			clone_url = fmt.Sprintf("https://%s:%s@github.com/ecsact-dev/%s.git", c.AuthorLogin, gh_token, repo_name)
+		}
+
 		repo, err := git.PlainClone(repo_clone_dir, false, &git.CloneOptions{
-			URL: fmt.Sprintf("https://github.com/ecsact-dev/%s.git", repo_name),
+			URL: clone_url,
 		})
 		checkErr(err)
 
