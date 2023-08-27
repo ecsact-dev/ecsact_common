@@ -33,8 +33,6 @@ jobs:
   test-linux:
     runs-on: ubuntu-latest
     steps:
-      # needed for wasmer 2.x
-      - run: sudo apt install libtinfo5
       - uses: actions/cache@v3
         with:
           path: |
