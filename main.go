@@ -149,6 +149,29 @@ func findPrNumber(repo string, title string, author string) (*int, error) {
 	return nil, nil
 }
 
+func updatePr(
+	repo_name string,
+	branch_name string,
+	repo *git.Repository,
+	worktree *git.Worktree,
+	prTitle string,
+	signature *object.Signature,
+) {
+	err := worktree.AddGlob(".")
+	checkErr(err)
+
+	_, err = worktree.Commit(prTitle, &git.CommitOptions{
+		Author: signature,
+	})
+	checkErr(err)
+
+	cmd := exec.Command("git", "push", "origin", "-u", branch_name, "--force")
+	cmd.Dir = "clones/" + repo_name
+
+	err = cmd.Run()
+	checkErr(err)
+}
+
 func createPr(
 	repo_name string,
 	branch_name string,
@@ -269,7 +292,11 @@ func main() {
 				When:  time.Now(),
 			})
 		} else {
-			fmt.Printf("Pr created already!\n")
+			updatePr(repo_name, branch_name, repo, worktree, c.PrTitle, &object.Signature{
+				Name:  c.AuthorLogin,
+				Email: c.AuthorLogin + "@users.noreply.github.com",
+				When:  time.Now(),
+			})
 		}
 	}
 }
