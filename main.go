@@ -198,7 +198,7 @@ func createPr(
 		"gh", "pr", "create",
 		"-R", fmt.Sprintf("ecsact-dev/%s", repo_name),
 		"-t", prTitle,
-		"-b", "Automatically created by https://github.com/ecsact-dev/ecsact_runtime",
+		"-b", "Automatically created by https://github.com/ecsact-dev/ecsact_common",
 		"-H", branch_name,
 	)
 	cmd.Stdout = os.Stdout
