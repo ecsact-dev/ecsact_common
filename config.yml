@@ -5,4 +5,6 @@ repos:
   - ecsact_runtime
   - ecsact_parse
   - ecsact_interpret
+  - ecsact_codegen
+  - ecsact_cli
   - ecsact_si_wasm
