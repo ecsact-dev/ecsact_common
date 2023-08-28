@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"path"
 	"path/filepath"
 	"runtime/debug"
 	"strings"
@@ -264,7 +265,10 @@ func main() {
 			template_file, err := os.Open(c.FilesDir + "/" + new_file)
 			checkErr(err)
 
-			repo_file, err := os.Create(repo_clone_dir + "/" + new_file)
+			repo_file_path := repo_clone_dir + "/" + new_file
+			os.MkdirAll(path.Dir(repo_file_path), os.ModePerm)
+
+			repo_file, err := os.Create(repo_file_path)
 			checkErr(err)
 
 			_, err = io.Copy(repo_file, template_file)
