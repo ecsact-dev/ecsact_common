@@ -189,7 +189,7 @@ func createPr(
 	})
 	checkErr(err)
 
-	cmd := exec.Command("git", "push", "origin", "-u", branch_name)
+	cmd := exec.Command("git", "push", "origin", "-u", branch_name, "--force")
 	cmd.Dir = "clones/" + repo_name
 
 	err = cmd.Run()
@@ -244,6 +244,8 @@ func main() {
 			continue
 		}
 
+		fmt.Printf("== Modifications detected for %s ==\n", repo_name)
+
 		worktree, err := repo.Worktree()
 		checkErr(err)
 
@@ -273,17 +275,23 @@ func main() {
 
 			_, err = io.Copy(repo_file, template_file)
 			checkErr(err)
+
+			fmt.Printf("new %s\n", new_file)
 		}
 
 		for _, changed_file := range files_diff.ChangedFiles {
-			template_file, err := os.Open(c.FilesDir + "/" + changed_file)
+			template_file_path := c.FilesDir + "/" + changed_file
+			template_file, err := os.Open(template_file_path)
 			checkErr(err)
 
-			repo_file, err := os.Create(repo_clone_dir + "/" + changed_file)
+			repo_file_path := repo_clone_dir + "/" + changed_file
+			repo_file, err := os.Create(repo_file_path)
 			checkErr(err)
 
 			_, err = io.Copy(repo_file, template_file)
 			checkErr(err)
+
+			fmt.Printf("changed %s\n", changed_file)
 		}
 
 		pr_num, err := findPrNumber(repo_name, c.PrTitle, c.AuthorLogin)
