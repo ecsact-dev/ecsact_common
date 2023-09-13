@@ -244,7 +244,7 @@ func main() {
 			continue
 		}
 
-		fmt.Printf("== Modifications detected for %s ==\n", repo_name)
+		fmt.Printf("::group::%s\n", repo_name)
 
 		worktree, err := repo.Worktree()
 		checkErr(err)
@@ -310,5 +310,6 @@ func main() {
 				When:  time.Now(),
 			})
 		}
+		fmt.Printf("::endgroup::\n")
 	}
 }
