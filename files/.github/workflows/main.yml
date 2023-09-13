@@ -28,7 +28,7 @@ jobs:
           key: ${{runner.os}}-bazel-cache
       - uses: actions/checkout@v4
       - run: bazelisk build --config=ci //...
-      - if: ${{ hashfiles('test/MODULE.bazel') == '' }}
+      - if: ${{ hashfiles('test/MODULE.bazel') != '' }}
         run: bazelisk test --config=ci ...
         working-directory: test
 
@@ -43,6 +43,6 @@ jobs:
           key: ${{runner.os}}-bazel-cache
       - uses: actions/checkout@v4
       - run: bazelisk build --config=ci //...
-      - if: ${{ hashfiles('test/MODULE.bazel') == '' }}
+      - if: ${{ hashfiles('test/MODULE.bazel') != '' }}
         run: bazelisk test --config=ci ...
         working-directory: test
