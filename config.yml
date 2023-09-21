@@ -11,6 +11,6 @@ repos:
   - ecsact_lang_json
   - ecsact_lang_cpp
   - ecsact_lang_csharp
-  - ecsact_lang_lsp_server
+  - ecsact_lsp_server
   - ecsact_rt_entt
   - ecsact_rt_reference
