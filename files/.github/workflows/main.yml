@@ -24,6 +24,7 @@ jobs:
         with: { clang-format-version: "18" }
 
   test-windows:
+    if: github.event_name == 'merge_group'
     runs-on: windows-latest
     steps:
       - uses: actions/cache@v4
@@ -39,6 +40,7 @@ jobs:
         working-directory: test
 
   test-linux:
+    if: github.event_name == 'merge_group'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/cache@v4
