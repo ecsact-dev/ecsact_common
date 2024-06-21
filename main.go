@@ -209,7 +209,7 @@ func createPr(
 	checkErr(err)
 
 	cmd = exec.Command(
-		"gh", "pr", "merge", "--auto",
+		"gh", "pr", "merge", "chore/sync-with-ecsact-common", "--auto",
 		"-R", fmt.Sprintf("ecsact-dev/%s", repo_name),
 	)
 	cmd.Stdout = os.Stdout
