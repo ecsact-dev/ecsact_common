@@ -25,7 +25,9 @@ jobs:
         with: { clang-format-version: "18" }
 
   test-windows:
-    if: (github.event_name == 'pull_request' && github.event.pull_request.user.login == 'renovate[bot]') || (github.event_name == 'merge_group' && github.event.pull_request.user.login != 'renovate[bot]')
+    if: >-
+      (github.event_name == 'pull_request' && (github.event.pull_request.user.login == 'renovate[bot]' || github.event.pull_request.user.login == 'seaubot'))
+      || (github.event_name == 'merge_group' && github.event.pull_request.user.login != 'renovate[bot]' && github.event.pull_request.user.login != 'seaubot')
     runs-on: windows-latest
     steps:
       - uses: actions/cache@v4
@@ -41,7 +43,9 @@ jobs:
         working-directory: test
 
   test-linux:
-    if: (github.event_name == 'pull_request' && github.event.pull_request.user.login == 'renovate[bot]') || (github.event_name == 'merge_group' && github.event.pull_request.user.login != 'renovate[bot]')
+    if: >-
+      (github.event_name == 'pull_request' && (github.event.pull_request.user.login == 'renovate[bot]' || github.event.pull_request.user.login == 'seaubot'))
+      || (github.event_name == 'merge_group' && github.event.pull_request.user.login != 'renovate[bot]' && github.event.pull_request.user.login != 'seaubot')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/cache@v4
