@@ -171,6 +171,16 @@ func updatePr(
 
 	err = cmd.Run()
 	checkErr(err)
+
+	cmd = exec.Command(
+		"gh", "pr", "merge", "chore/sync-with-ecsact-common", "--auto",
+		"-R", fmt.Sprintf("ecsact-dev/%s", repo_name),
+	)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+
+	err = cmd.Run()
+	checkErr(err)
 }
 
 func createPr(
