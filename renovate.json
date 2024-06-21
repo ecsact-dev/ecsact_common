@@ -3,8 +3,5 @@
   "configMigration": true,
   "extends": [
     "config:recommended",
-    "docker:pinDigests",
-    "helpers:pinGitHubActionDigests",
-    ":pinDevDependencies"
   ]
 }
