@@ -12,29 +12,29 @@ jobs:
     name: Typos Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: crate-ci/typos@v1.19.0
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      - uses: crate-ci/typos@bcafd462cb07ef7ba57e34abf458fe20767e808b # v1.19.0
 
   formatting-check:
     name: Formatting Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: greut/eclint-action@v0
-      - uses: jidicula/clang-format-action@v4.11.0
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      - uses: greut/eclint-action@b9844795dd0b5fb19e3c60bd731fd3e548524b5c # v0
+      - uses: jidicula/clang-format-action@f62da5e3d3a2d88ff364771d9d938773a618ab5e # v4.11.0
         with: { clang-format-version: "18" }
 
   test-windows:
     if: (github.event_name == 'pull_request' && github.event.pull_request.user.login == 'renovate[bot]') || (github.event_name == 'merge_group' && github.event.pull_request.user.login != 'renovate[bot]')
     runs-on: windows-latest
     steps:
-      - uses: actions/cache@v4
+      - uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4
         with:
           path: |
             /Users/runneradmin/AppData/Local/bazelisk
             /Users/runneradmin/.cache/bazel-disk-cache
           key: ${{runner.os}}-bazel-cache
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
       - run: bazelisk build --config=ci //...
       - if: ${{ hashfiles('test/MODULE.bazel') != '' }}
         run: bazelisk test --config=ci ...
@@ -44,13 +44,13 @@ jobs:
     if: (github.event_name == 'pull_request' && github.event.pull_request.user.login == 'renovate[bot]') || (github.event_name == 'merge_group' && github.event.pull_request.user.login != 'renovate[bot]')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/cache@v4
+      - uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4
         with:
           path: |
             ~/.cache/bazelisk
             ~/.cache/bazel-disk-cache
           key: ${{runner.os}}-bazel-cache
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
       - run: bazelisk build --config=ci //...
       - if: ${{ hashfiles('test/MODULE.bazel') != '' }}
         run: bazelisk test --config=ci ...
