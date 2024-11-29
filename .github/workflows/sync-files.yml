@@ -11,4 +11,5 @@ jobs:
       - uses: actions/setup-go@v4
       - run: go run main.go
         env:
-          GH_TOKEN: ${{ secrets.SEAUBOT_ECSACT_DEV_GH_TOKEN }}
+          GIT_CLONE_GH_TOKEN: ${{ secrets.SEAUBOT_ECSACT_DEV_GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
