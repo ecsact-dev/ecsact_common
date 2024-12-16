@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: crate-ci/typos@cfe759ac8dd421e203cc293a373396fbc6fe0d4b # v1.22.7
+      - uses: crate-ci/typos@9d890159570d5018df91fedfa40b4730cd4a81b1 # v1.28.4
 
   formatting-check:
     name: Formatting Check
